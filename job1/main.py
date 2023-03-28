@@ -80,27 +80,29 @@ def arrondir_notes(notes):
 
 liste_notes = [38, 42, 67, 81, 77, 89]
 notes_arrondies = arrondir_notes(liste_notes)
-print(notes_arrondies)
+print("Voici le résultat de l'arrondi des notes :", notes_arrondies)
 
 
 # 8
-mot = input("Entrez un mot sans espace ni caractère spécial : ")
-n = len(mot)
+def modifier_mot():
+    mot = input(
+        "Entrez un mot avec 3 lettres minimum sans espace ni caractère spécial : ")
+    if len(mot) < 3:
+        print("Le mot doit contenir au moins trois caractères.")
+    else:
+        n = len(mot)
+        liste_mot = list(mot)
+        liste_mot.sort()
+        i = 0
+        while i < n and mot[i] == liste_mot[i]:
+            i += 1
+        if i < n:
+            j = i + 1
+            while j < n and liste_mot[j] <= mot[i]:
+                j += 1
+            liste_mot[i], liste_mot[j] = liste_mot[j], liste_mot[i]
+        mot_modifie = "".join(liste_mot)
+        print("Le mot modifié est :", mot_modifie)
 
-liste_mot = list(mot)
 
-liste_mot.sort()
-
-i = 0
-while i < n and mot[i] == liste_mot[i]:
-    i += 1
-
-if i < n:
-    j = i + 1
-    while j < n and liste_mot[j] <= mot[i]:
-        j += 1
-    liste_mot[i], liste_mot[j] = liste_mot[j], liste_mot[i]
-
-mot_modifie = "".join(liste_mot)
-
-print("Le mot modifié est :", mot_modifie)
+modifier_mot()
